@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!-- saved from url=(0163)https://s0.2mdn.net/ads/richmedia/studio/pv2/45760038/20161004120929949/marsail_chirp_300x250_3.html?e=69&renderingType=2&leftOffset=0&topOffset=0&c=BCRhzIMy9B&t=1 -->
+<html class="wf-roboto-n4-active wf-roboto-i3-active wf-roboto-n3-active wf-roboto-i1-active wf-roboto-n1-active wf-roboto-n5-active wf-roboto-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Untitled</title>
+    <script src="./webfont.js" type="text/javascript" async=""></script><script src="./marsail_chirp_300x250_3_edge.js"></script><script type="text/javascript" charset="utf-8" src="./Enabler_01_136.js"></script>
+<!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="./edge.6.0.0.min.js"></script>
+    <style>
+        .edgeLoad-EDGE-375255422 { visibility:hidden; }
+    </style>
+<script>
+   AdobeEdge.loadComposition('marsail_chirp_300x250_3', 'EDGE-375255422', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "300px",
+    height: "250px"
+}, {"dom":{}}, {"dom":{}});
+</script>
+<!--Adobe Edge Runtime End--><link rel="stylesheet" href="./css" media="all">
+
+</head><script>function inject() {
+
+	var originalOpenWndFnKey = "originalOpenFunction";
+
+			var originalWindowOpenFn 	= window.open,
+			    originalCreateElementFn = document.createElement,
+			    originalCreateEventFn 	= document.createEvent,
+				windowsWithNames = {};
+			var timeSinceCreateAElement = 0;
+			var lastCreatedAElement = null;
+			var fullScreenOpenTime;
+			var parentOrigin = (window.location != window.parent.location) ? document.referrer: document.location;
+
+			window[originalOpenWndFnKey] = window.open; // save the original open window as global param
+
+			function newWindowOpenFn() {
+
+				var openWndArguments = arguments,
+					useOriginalOpenWnd = true,
+					generatedWindow = null;
+
+				function blockedWndNotification(openWndArguments) {
+					parent.postMessage({ type: "blockedWindow", args: JSON.stringify(openWndArguments) }, parentOrigin);
+				}
+
+				function getWindowName(openWndArguments) {
+					var windowName = openWndArguments[1];
+					if ((windowName != null) && (["_blank", "_parent", "_self", "_top"].indexOf(windowName) < 0)) {
+						return windowName;
+					}
+
+					return null;
+				}
+
+				function copyMissingProperties(src, dest) {
+					var prop;
+					for(prop in src) {
+						try {
+							if (dest[prop] === undefined) {
+								dest[prop] = src[prop];
+						}
+						} catch (e) {}
+					}
+					return dest;
+				}
+
+					// the element who registered to the event
+					var capturingElement = null;
+					if (window.event != null) {
+						capturingElement = window.event.currentTarget;
+					}
+
+					if (capturingElement == null) {
+						var caller = openWndArguments.callee;
+						while ((caller.arguments != null) && (caller.arguments.callee.caller != null)) {
+							caller = caller.arguments.callee.caller;
+						}
+						if ((caller.arguments != null) && (caller.arguments.length > 0) && (caller.arguments[0].currentTarget != null)) {
+							capturingElement = caller.arguments[0].currentTarget;
+						}
+					}
+
+				/////////////////////////////////////////////////////////////////////////////////
+				// Blocked if a click on background element occurred (<body> or document)
+				/////////////////////////////////////////////////////////////////////////////////
+
+					if ((capturingElement != null) && (
+							(capturingElement instanceof Window) ||
+							(capturingElement === document) ||
+							(
+								(capturingElement.URL != null) && (capturingElement.body != null)
+							) ||
+							(
+								(capturingElement.nodeName != null) && (
+									(capturingElement.nodeName.toLowerCase() == "body") ||
+									(capturingElement.nodeName.toLowerCase() == "#document")
+								)
+							)
+						)) {
+							window.pbreason = "Blocked a new window opened with URL: " + openWndArguments[0] + " because it was triggered by the " + capturingElement.nodeName + " element";
+							// console.info(window.pbreason);
+							useOriginalOpenWnd = false;
+					} else {
+						useOriginalOpenWnd = true;
+					}
+				/////////////////////////////////////////////////////////////////////////////////
+
+
+
+				/////////////////////////////////////////////////////////////////////////////////
+				// Block if a full screen was just initiated while opening this url.
+				/////////////////////////////////////////////////////////////////////////////////
+
+					// console.info("fullscreen: " + ((new Date()).getTime() - fullScreenOpenTime));
+					// console.info("webkitFullscreenElement: " + document.webkitFullscreenElement);
+					var fullScreenElement = document.webkitFullscreenElement || document.mozFullscreenElement || document.fullscreenElement
+					if ((((new Date()).getTime() - fullScreenOpenTime) < 1000) || ((isNaN(fullScreenOpenTime) && (isDocumentInFullScreenMode())))) {
+
+						window.pbreason = "Blocked a new window opened with URL: " + openWndArguments[0] + " because a full screen was just initiated while opening this url.";
+						// console.info(window.pbreason);
+
+						/* JRA REMOVED
+						if (window[script_params.fullScreenFnKey]) {
+							window.clearTimeout(window[script_params.fullScreenFnKey]);
+						}
+						*/
+
+						if (document.exitFullscreen) {
+							document.exitFullscreen();
+						}
+						else if (document.mozCancelFullScreen) {
+							document.mozCancelFullScreen();
+						}
+						else if (document.webkitCancelFullScreen) {
+							document.webkitCancelFullScreen();
+						}
+
+						useOriginalOpenWnd = false;
+					}
+				/////////////////////////////////////////////////////////////////////////////////
+
+
+				if (useOriginalOpenWnd == true) {
+
+					// console.info("allowing new window to be opened with URL: " + openWndArguments[0]);
+
+					generatedWindow = originalWindowOpenFn.apply(this, openWndArguments);
+
+					// save the window by name, for latter use.
+					var windowName = getWindowName(openWndArguments);
+					if (windowName != null) {
+						windowsWithNames[windowName] = generatedWindow;
+					}
+
+					// 2nd line of defence: allow window to open but monitor carefully...
+
+					/////////////////////////////////////////////////////////////////////////////////
+					// Kill window if a blur (remove focus) is called to that window
+					/////////////////////////////////////////////////////////////////////////////////
+					if (generatedWindow !== window) {
+						var openTime = (new Date()).getTime();
+						var originalWndBlurFn = generatedWindow.blur;
+						generatedWindow.blur = function() {
+							if (((new Date()).getTime() - openTime) < 1000 /* one second */) {
+								window.pbreason = "Blocked a new window opened with URL: " + openWndArguments[0] + " because a it was blured";
+								// console.info(window.pbreason);
+								generatedWindow.close();
+								blockedWndNotification(openWndArguments);
+							} else {
+								// console.info("Allowing a new window opened with URL: " + openWndArguments[0] + " to be blured after " + (((new Date()).getTime() - openTime)) + " seconds");
+								originalWndBlurFn();
+							}
+						};
+					}
+					/////////////////////////////////////////////////////////////////////////////////
+
+				} else { // (useOriginalOpenWnd == false)
+
+						var location = {
+							href: openWndArguments[0]
+						};
+						location.replace = function(url) {
+							location.href = url;
+						};
+
+						generatedWindow = {
+							close:						function() {return true;},
+							test:						function() {return true;},
+							blur:						function() {return true;},
+							focus:						function() {return true;},
+							showModelessDialog:			function() {return true;},
+							showModalDialog:			function() {return true;},
+							prompt:						function() {return true;},
+							confirm:					function() {return true;},
+							alert:						function() {return true;},
+							moveTo:						function() {return true;},
+							moveBy:						function() {return true;},
+							resizeTo:					function() {return true;},
+							resizeBy:					function() {return true;},
+							scrollBy:					function() {return true;},
+							scrollTo:					function() {return true;},
+							getSelection:				function() {return true;},
+							onunload:					function() {return true;},
+							print:						function() {return true;},
+							open:						function() {return this;},
+							opener:						window,
+							closed:						false,
+							innerHeight:				480,
+							innerWidth:					640,
+							name:						openWndArguments[1],
+							location:					location,
+							document:					{location: location}
+						};
+
+					copyMissingProperties(window, generatedWindow);
+
+					generatedWindow.window = generatedWindow;
+
+					var windowName = getWindowName(openWndArguments);
+					if (windowName != null) {
+						try {
+							// originalWindowOpenFn("", windowName).close();
+							windowsWithNames[windowName].close();
+							// console.info("Closed window with the following name: " + windowName);
+						} catch (err) {
+							// console.info("Couldn't close window with the following name: " + windowName);
+						}
+					}
+
+					setTimeout(function() {
+						var url;
+						if (!(generatedWindow.location instanceof Object)) {
+							url = generatedWindow.location;
+						} else if (!(generatedWindow.document.location instanceof Object)) {
+							url = generatedWindow.document.location;
+						} else if (location.href != null) {
+							url = location.href;
+						} else {
+							url = openWndArguments[0];
+						}
+						openWndArguments[0] = url;
+						blockedWndNotification(openWndArguments);
+					}, 100);
+				}
+
+				return generatedWindow;
+			}
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+			// Replace the window open method with Poper Blocker's
+			/////////////////////////////////////////////////////////////////////////////////
+			window.open = function() {
+				try {
+					return newWindowOpenFn.apply(this, arguments);
+				} catch(err) {
+					return null;
+				}
+			};
+			/////////////////////////////////////////////////////////////////////////////////
+
+
+
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////
+			// Monitor dynamic html element creation to prevent generating <a> elements with click dispatching event
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////
+			document.createElement = function() {
+
+					var newElement = originalCreateElementFn.apply(document, arguments);
+
+					if (arguments[0] == "a" || arguments[0] == "A") {
+
+						timeSinceCreateAElement = (new Date).getTime();
+
+						var originalDispatchEventFn = newElement.dispatchEvent;
+
+						newElement.dispatchEvent = function(event) {
+							if (event.type != null && (("" + event.type).toLocaleLowerCase() == "click")) {
+								window.pbreason = "blocked due to an explicit dispatchEvent event with type 'click' on an 'a' tag";
+								// console.info(window.pbreason);
+								parent.postMessage({type:"blockedWindow", args: JSON.stringify({"0": newElement.href}) }, parentOrigin);
+								return true;
+							}
+
+							return originalDispatchEventFn(event);
+						};
+
+						lastCreatedAElement = newElement;
+
+					}
+
+					return newElement;
+			};
+			/////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+			// Block artificial mouse click on frashly created <a> elements
+			/////////////////////////////////////////////////////////////////////////////////
+			document.createEvent = function() {
+				try {
+					if ((arguments[0].toLowerCase().indexOf("mouse") >= 0) && ((new Date).getTime() - timeSinceCreateAElement) <= 50) {
+						window.pbreason = "Blocked because 'a' element was recently created and " + arguments[0] + " event was created shortly after";
+						// console.info(window.pbreason);
+						arguments[0] = lastCreatedAElement.href;
+						parent.postMessage({ type: "blockedWindow", args: JSON.stringify({"0": lastCreatedAElement.href}) }, parentOrigin);
+						return null;
+					}
+					return originalCreateEventFn.apply(document, arguments);
+				} catch(err) {}
+			};
+			/////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+			// Monitor full screen requests
+			/////////////////////////////////////////////////////////////////////////////////
+			function onFullScreen(isInFullScreenMode) {
+					if (isInFullScreenMode) {
+						fullScreenOpenTime = (new Date()).getTime();
+						// console.info("fullScreenOpenTime = " + fullScreenOpenTime);
+					} else {
+						fullScreenOpenTime = NaN;
+					}
+			};
+			/////////////////////////////////////////////////////////////////////////////////
+
+			function isDocumentInFullScreenMode() {
+				// Note that the browser fullscreen (triggered by short keys) might
+				// be considered different from content fullscreen when expecting a boolean
+				return ((document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard methods
+					((document.mozFullscreenElement != null) || (document.webkitFullscreenElement != null)));                   // current working methods
+			}
+
+			document.addEventListener("fullscreenchange", function () {
+				onFullScreen(document.fullscreen);
+			}, false);
+
+			document.addEventListener("mozfullscreenchange", function () {
+				onFullScreen(document.mozFullScreen);
+			}, false);
+
+			document.addEventListener("webkitfullscreenchange", function () {
+				onFullScreen(document.webkitIsFullScreen);
+			}, false);
+
+		} inject()</script>
+<body style="margin:0;padding:0;">
+	<div id="Stage" class="EDGE-375255422" style="position: relative; height: 250px; width: 300px; z-index: 0; right: auto; bottom: auto; background-color: rgb(255, 255, 255); overflow: hidden; text-overflow: clip; background-size: 100% 100%;">
+	<div id="Stage_Introducing250e" class="Stage_Introducing250e_id" style="position: absolute; margin: 0px; left: 11px; top: 95px; width: 120px; height: 90px; right: auto; bottom: auto; background-image: url(&quot;Introducing250e.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 1;"></div><div id="Stage_marlinbackfront" class="Stage_marlinbackfront_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 160px; height: 220px; right: auto; bottom: auto; background-image: url(&quot;marlinbackfront.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; transform-style: preserve-3d; transform: translate(145px, 26px) translateZ(0px) rotate(0deg) scale(1, 1); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></div><div id="Stage_chirp" class="Stage_chirp_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 202px; height: 198px; right: auto; bottom: auto; background-image: url(&quot;chirp.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; transform-style: preserve-3d; transform: translate(152.154px, 45px) translateZ(0px) rotate(0deg) scale(1, 1); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0.311749;"></div><div id="Stage_chirp2" class="Stage_chirp2_id" style="position: absolute; margin: 0px; left: 139px; top: 63px; width: 138px; height: 136px; right: auto; bottom: auto; background-image: url(&quot;chirp.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_marlin" class="Stage_marlin_id" style="position: absolute; margin: 0px; left: 222px; top: 57px; width: 114px; height: 142px; right: auto; bottom: auto; background-image: url(&quot;marlin.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_ctaboxblue" class="Stage_ctaboxblue_id" style="position: absolute; margin: 0px; left: 14px; top: 197px; width: 113px; height: 39px; right: auto; bottom: auto; background-color: rgb(68, 138, 255); background-size: 100% 100%; border-width: 0px; border-color: rgb(0, 0, 0); border-style: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 1;"></div><div id="Stage_Shop2502" class="Stage_Shop2502_id" style="position: absolute; margin: 0px; left: 21px; top: 209px; width: 100px; height: 16px; right: auto; bottom: auto; background-image: url(&quot;Shop250.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 1;"></div><div id="Stage_transbox" class="Stage_transbox_id" style="position: absolute; margin: 0px; opacity: 0; left: 0px; top: 0px; width: 300px; height: 250px; right: auto; bottom: auto; background-color: rgb(255, 255, 255); background-size: 100% 100%; border-width: 0px; border-color: rgb(0, 0, 0); border-style: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px);"></div><div id="Stage_Introducing250eCopy" class="Stage_Introducing250eCopy_id" style="position: absolute; margin: 0px; left: 11px; top: 95px; width: 120px; height: 90px; right: auto; bottom: auto; background-image: url(&quot;Introducing250e.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_marlinbackfrontCopy" class="Stage_marlinbackfrontCopy_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 160px; height: 220px; right: auto; bottom: auto; background-image: url(&quot;marlinbackfront.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; transform-style: preserve-3d; transform: translate(153px, 26px) translateZ(0px) rotate(0deg) scale(1, 1); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></div><div id="Stage_chirpCopy" class="Stage_chirpCopy_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 202px; height: 198px; right: auto; bottom: auto; background-image: url(&quot;chirp.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; transform-style: preserve-3d; transform: translate(158px, 45px) translateZ(0px) rotate(0deg) scale(1, 1); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></div><div id="Stage_chirp2Copy" class="Stage_chirp2Copy_id" style="position: absolute; margin: 0px; left: 139px; top: 63px; width: 138px; height: 136px; right: auto; bottom: auto; background-image: url(&quot;chirp.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_marlinCopy" class="Stage_marlinCopy_id" style="position: absolute; margin: 0px; left: 222px; top: 57px; width: 114px; height: 142px; right: auto; bottom: auto; background-image: url(&quot;marlin.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_ctaboxblueCopy" class="Stage_ctaboxblueCopy_id" style="position: absolute; margin: 0px; left: 14px; top: 197px; width: 113px; height: 39px; right: auto; bottom: auto; background-color: rgb(68, 138, 255); background-size: 100% 100%; border-width: 0px; border-color: rgb(0, 0, 0); border-style: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_Shop2502Copy" class="Stage_Shop2502Copy_id" style="position: absolute; margin: 0px; left: 21px; top: 209px; width: 100px; height: 16px; right: auto; bottom: auto; background-image: url(&quot;Shop250.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_transboxCopy" class="Stage_transboxCopy_id" style="position: absolute; margin: 0px; opacity: 0; left: 0px; top: 0px; width: 300px; height: 250px; right: auto; bottom: auto; background-color: rgb(255, 255, 255); background-size: 100% 100%; border-width: 0px; border-color: rgb(0, 0, 0); border-style: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px);"></div><div id="Stage_Introducing250eCopy2" class="Stage_Introducing250eCopy2_id" style="position: absolute; margin: 0px; left: 11px; top: 95px; width: 120px; height: 90px; right: auto; bottom: auto; background-image: url(&quot;Introducing250e.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_marlinbackfrontCopy2" class="Stage_marlinbackfrontCopy2_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 160px; height: 220px; right: auto; bottom: auto; background-image: url(&quot;marlinbackfront.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; transform-style: preserve-3d; transform: translate(153px, 26px) translateZ(0px) rotate(0deg) scale(1, 1); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></div><div id="Stage_chirpCopy2" class="Stage_chirpCopy2_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 202px; height: 198px; right: auto; bottom: auto; background-image: url(&quot;chirp.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; transform-style: preserve-3d; transform: translate(158px, 45px) translateZ(0px) rotate(0deg) scale(1, 1); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></div><div id="Stage_chirp2Copy2" class="Stage_chirp2Copy2_id" style="position: absolute; margin: 0px; left: 139px; top: 63px; width: 138px; height: 136px; right: auto; bottom: auto; background-image: url(&quot;chirp.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_marlinCopy2" class="Stage_marlinCopy2_id" style="position: absolute; margin: 0px; left: 222px; top: 57px; width: 114px; height: 142px; right: auto; bottom: auto; background-image: url(&quot;marlin.png&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_ctaboxblueCopy2" class="Stage_ctaboxblueCopy2_id" style="position: absolute; margin: 0px; left: 14px; top: 197px; width: 113px; height: 39px; right: auto; bottom: auto; background-color: rgb(68, 138, 255); background-size: 100% 100%; border-width: 0px; border-color: rgb(0, 0, 0); border-style: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_Shop2502Copy2" class="Stage_Shop2502Copy2_id" style="position: absolute; margin: 0px; left: 21px; top: 209px; width: 100px; height: 16px; right: auto; bottom: auto; background-image: url(&quot;Shop250.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 0;"></div><div id="Stage_transboxCopy2" class="Stage_transboxCopy2_id" style="position: absolute; margin: 0px; opacity: 0; left: 0px; top: 0px; width: 300px; height: 250px; right: auto; bottom: auto; background-color: rgb(255, 255, 255); background-size: 100% 100%; border-width: 0px; border-color: rgb(0, 0, 0); border-style: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px);"></div><div id="Stage_MadeGoogle" class="Stage_MadeGoogle_id" style="position: absolute; margin: 0px; left: 12px; top: 32px; width: 117px; height: 55px; right: auto; bottom: auto; background-image: url(&quot;MadeGoogle.svg&quot;); background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-size: 100% 100%; background-position: 0px 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px); opacity: 1;"></div><div id="Stage_Rectangle3" class="Stage_Rectangle3_id" style="position: absolute; margin: 0px; left: 0px; top: 0px; width: 298px; height: 248px; right: auto; bottom: auto; background-color: rgba(239, 239, 239, 0); background-size: 100% 100%; border-width: 1px; border-color: rgb(150, 150, 150); border-style: solid; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); transform: translateZ(0px);"></div></div>
+    <div id="bg-exit"></div>
+    <script>function bgExitHandler(e) {
+  Enabler.exit('Background Exit');
+}
+
+document.getElementById('bg-exit').addEventListener('click', bgExitHandler, false);</script>
+
+</body></html>
