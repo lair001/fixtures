@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#bg-exit {
+  background-color: rgba(255,255,255,0);
+  cursor: pointer;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
